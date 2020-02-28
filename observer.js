@@ -18,12 +18,11 @@ const defineReactive = (data, key, value) => {
     get: () => {
       // place extrac logic here.
       console.log(`propery ${key} getter as been called returning value ${value}`);
-      const subscriber = {
-        update: () => {
-          console.log('subscriber.update has been called');
-        }
+      
+      // check if there is any watcher in Dep waiting for registeration
+      if(Dep.registerWatcher) {
+        dep.addWatcher(Dep.registerWatcher)
       }
-      dep.addSubscriber(subscriber)
       return value;
     },
     set: (newValue) => {
@@ -31,20 +30,9 @@ const defineReactive = (data, key, value) => {
         value = newValue;
         // place extrac logi here.
         console.log(`propery ${key} setter as been called setting value ${newValue}`);
-        dep.notify();
+
+        dep.notify(); // notify watchers to execute update
       }
     }
   });
-}
-
-function Dep() {
-  this.subscribers = [];
-}
-
-Dep.prototype.addSubscriber = function(subscriber) {
-  this.subscribers.push(subscriber);
-}
-
-Dep.prototype.notify = function() {
-  this.subscribers.map(subscriber => subscriber.update());
 }

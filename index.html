@@ -7,14 +7,17 @@
 </head>
 <body>
   <div id="app">
-    <h2>{{title}}</h2>
+    <h2 id="title">{{title}}</h2>
     <input type="text" v-model="name">
-    <h1>{{name}}</h1>
+    <h1 id="name">{{name}}</h1>
   </div>
 </body>
 <script src="observer.js"></script>
+<script src="Dep.js"></script>
+<script src="Watcher.js"></script>
+<script src="index.js"></script>
 <script type="text/javascript">
-  const person = {
+  const data = {
     name: 'John Smith',
     gender: 'male',
     employer: {
@@ -25,11 +28,12 @@
       }
     }
   }
+  const el = document.querySelector('#name');
 
-  observe(person);
-  person.name;
-  person.name = 'Will Smith';
-  person.employer.address.city='Wynyard';
-  person.employer = 'CBA';
+  const vue = new myVue(data, el, 'name');
+  
+  setTimeout(() => {
+    vue.data.name = 'Will Smith';
+  }, 1000);
 </script>
 </html>

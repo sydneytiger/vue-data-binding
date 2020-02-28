@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Vue data binding</title>
+</head>
+<body>
+  <div id="app">
+    <h2>{{title}}</h2>
+    <input type="text" v-model="name">
+    <h1>{{name}}</h1>
+  </div>
+</body>
+<script src="observer.js"></script>
+<script type="text/javascript">
+  const person = {
+    name: 'John Smith',
+    gender: 'male',
+    employer: {
+      name: 'ING Australia',
+      address: {
+        city: 'Sydney',
+        postcode: 2000
+      }
+    }
+  }
+
+  observe(person);
+  person.name;
+  person.name = 'Will Smith';
+  person.employer.address.city='Wynyard';
+  person.employer = 'CBA';
+</script>
+</html>

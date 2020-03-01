@@ -11,7 +11,7 @@ class Compiler{
     el.childNodes.forEach(node => {
       const text = node.textContent;
       
-      // nodeType === 3 => the node is a text node e.g. span, p
+      // nodeType === 1 => the node is a text node e.g. span, p
       if(node.nodeType === 1 && regex.test(text)) {
         this.compileText(node, regex.exec(text)[1]);
       }

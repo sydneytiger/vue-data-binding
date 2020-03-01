@@ -3,13 +3,13 @@ class Watcher {
     this.viewModel = viewModel;
     this.expression = expression;
     this.callback = callback;
-    this.value = this.viewModel.data[this.expression];
+    this.value = this.viewModel[this.expression];
 
     this.register(); // register itself to Dep
   }
 
   update() {
-    const newValue = this.viewModel.data[this.expression];
+    const newValue = this.viewModel[this.expression];
     const oldValue = this.value;
     if (newValue !== oldValue) {
       this.value = newValue;
@@ -22,7 +22,7 @@ class Watcher {
     // this code invoke the property getter
     // in the getter logic checking Dep.target and then add this watcher instance
     // in to dep subscribers array
-    this.viewModel.data[this.expression];
+    this.viewModel[this.expression];
     Dep.registerWatcher = null;
   }
 }

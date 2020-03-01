@@ -10,14 +10,17 @@
     <h2 id="title">{{title}}</h2>
     <input type="text" v-model="name">
     <h1 id="name">{{name}}</h1>
+    <p>{{employer}}</p>
   </div>
 </body>
 <script src="observer.js"></script>
 <script src="Dep.js"></script>
 <script src="Watcher.js"></script>
+<script src="Compiler.js"></script>
 <script src="myVue.js"></script>
 <script type="text/javascript">
   const data = {
+    title: 'Cool Vue',
     name: 'John Smith',
     gender: 'male',
     employer: {
@@ -28,9 +31,9 @@
       }
     }
   }
-  const el = document.querySelector('#name');
+  const app = document.querySelector('#app');
 
-  const vue = new myVue(data, el, 'name');
+  const vue = new myVue(data, app);
   
   setTimeout(() => {
     vue.data.name = 'Will Smith';
